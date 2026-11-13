@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Thi thử · Tóm lược Quy trình – Quy định</title>
+<style>
+:root{--navy:#14284b;--navy2:#1d3a6b;--teal:#0f8a7e;--teal2:#14a597;--bg:#f3f5f9;--card:#fff;--ink:#1b2333;--mut:#667085;--line:#e3e7ef;--ok:#11875d;--okbg:#e7f6ef;--bad:#c2372f;--badbg:#fdeceb;--warn:#b26a00;--warnbg:#fff4e0}
+*{box-sizing:border-box}
+body{margin:0;font-family:"Segoe UI",Roboto,Arial,sans-serif;background:var(--bg);color:var(--ink);font-size:16px;line-height:1.5}
+header{background:linear-gradient(120deg,var(--navy),var(--navy2) 55%,var(--teal));color:#fff;padding:14px 18px;position:sticky;top:0;z-index:10;box-shadow:0 2px 10px rgba(0,0,0,.15)}
+header .row{display:flex;align-items:center;gap:12px;max-width:960px;margin:0 auto}
+header .logo{font-weight:800;letter-spacing:.5px;background:#fff;color:var(--navy);border-radius:8px;padding:4px 8px;font-size:14px}
+header h1{font-size:17px;margin:0;font-weight:700;flex:1}
+header .timer{font-variant-numeric:tabular-nums;font-weight:800;font-size:20px;background:rgba(255,255,255,.15);padding:4px 12px;border-radius:8px}
+header .timer.low{background:#c2372f}
+main{max-width:960px;margin:0 auto;padding:18px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px;margin-bottom:14px;box-shadow:0 1px 3px rgba(16,24,40,.04)}
+.hero{background:linear-gradient(120deg,var(--navy),var(--teal));color:#fff;border:none}
+.hero h2{margin:0 0 6px;font-size:22px}
+.hero .slogan{opacity:.9;font-size:14px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px}
+.tile{cursor:pointer;border:1px solid var(--line);border-radius:12px;padding:16px;background:#fff;transition:.15s}
+.tile:hover{border-color:var(--teal);box-shadow:0 4px 14px rgba(15,138,126,.15)}
+.tile b{display:block;font-size:17px;margin-bottom:4px;color:var(--navy)}
+.tile span{color:var(--mut);font-size:14px}
+.btn{display:inline-block;border:none;border-radius:10px;padding:10px 16px;font-size:15px;font-weight:600;cursor:pointer;background:var(--teal);color:#fff}
+.btn:hover{background:var(--teal2)}
+.btn.sec{background:#fff;color:var(--navy);border:1px solid var(--line)}
+.btn.sec:hover{border-color:var(--teal)}
+.btn.dark{background:var(--navy)}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0}
+.chip{border:1px solid var(--line);border-radius:999px;padding:6px 12px;cursor:pointer;background:#fff;font-size:14px}
+.chip.on{background:var(--navy);color:#fff;border-color:var(--navy)}
+.muted{color:var(--mut);font-size:14px}
+.tag{display:inline-block;font-size:12px;font-weight:700;padding:2px 8px;border-radius:6px;background:#eef2f8;color:var(--navy2);margin-right:6px}
+.q{font-size:18px;font-weight:600;margin:6px 0 12px}
+.opt{display:flex;gap:10px;align-items:flex-start;border:1.5px solid var(--line);border-radius:10px;padding:11px 12px;margin:8px 0;cursor:pointer;background:#fff}
+.opt:hover{border-color:#b8c3d6}
+.opt .k{flex:0 0 26px;height:26px;border-radius:50%;border:1.5px solid #b8c3d6;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;color:var(--mut)}
+.opt.sel{border-color:var(--navy);background:#f1f5fc}
+.opt.sel .k{background:var(--navy);color:#fff;border-color:var(--navy)}
+.opt.ok{border-color:var(--ok);background:var(--okbg)}
+.opt.ok .k{background:var(--ok);color:#fff;border-color:var(--ok)}
+.opt.bad{border-color:var(--bad);background:var(--badbg)}
+.opt.bad .k{background:var(--bad);color:#fff;border-color:var(--bad)}
+.opt.lock{cursor:default}
+.exp{border-left:4px solid var(--teal);background:#f2faf9;padding:10px 12px;border-radius:8px;margin-top:10px;font-size:15px}
+.exp.bad{border-color:var(--bad);background:#fff6f5}
+.nav{display:grid;grid-template-columns:repeat(auto-fill,minmax(40px,1fr));gap:6px}
+.nav button{height:38px;border-radius:8px;border:1px solid var(--line);background:#fff;font-weight:700;cursor:pointer;color:var(--ink)}
+.nav button.done{background:#e8eef9;border-color:#b9c8e6}
+.nav button.cur{outline:2px solid var(--teal);outline-offset:1px}
+.nav button.ok{background:var(--okbg);border-color:var(--ok);color:var(--ok)}
+.nav button.bad{background:var(--badbg);border-color:var(--bad);color:var(--bad)}
+.nav button.flag{box-shadow:inset 0 -4px 0 var(--warn)}
+.bar{display:flex;gap:10px;justify-content:space-between;align-items:center;flex-wrap:wrap}
+textarea{width:100%;min-height:220px;border:1.5px solid var(--line);border-radius:10px;padding:12px;font:inherit;resize:vertical}
+.warn{background:var(--warnbg);color:var(--warn);border:1px solid #f3d29a;border-radius:10px;padding:10px 12px;font-size:14px;margin-bottom:12px}
+.score{font-size:44px;font-weight:800;line-height:1}
+.pass{color:var(--ok)} .fail{color:var(--bad)}
+.kpi{display:flex;gap:18px;flex-wrap:wrap;align-items:flex-end}
+.kpi div{min-width:120px}
+.kpi small{display:block;color:var(--mut);font-size:13px}
+.kpi b{font-size:22px}
+.check{display:flex;gap:10px;align-items:flex-start;padding:8px 0;border-bottom:1px dashed var(--line);cursor:pointer}
+.check input{margin-top:4px;transform:scale(1.2)}
+.prog{height:8px;background:#e6eaf2;border-radius:99px;overflow:hidden;margin:8px 0}
+.prog i{display:block;height:100%;background:linear-gradient(90deg,var(--teal),var(--navy2))}
+table{width:100%;border-collapse:collapse;font-size:14px}
+td,th{padding:8px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+.hide{display:none!important}
+.small{font-size:13px}
+details summary{cursor:pointer;font-weight:600;color:var(--navy)}
+.book .item{padding:10px 0;border-bottom:1px solid var(--line)}
+.book .ans{color:var(--ok);font-weight:600}
+@media (max-width:600px){main{padding:12px} .q{font-size:17px} header h1{font-size:15px}}
+</style>
+</head>
+<body>
+<header><div class="row"><span class="logo">TMN</span><h1 id="htitle">Thi thử · Chuẩn Thủ lĩnh – Vững Quy trình</h1><span id="timer" class="timer hide">30:00</span></div></header>
+<main id="app"></main>
+<div id="dlg" class="hide" style="position:fixed;inset:0;background:rgba(20,40,75,.45);z-index:50;display:flex;align-items:center;justify-content:center;padding:16px"><div class="card" style="max-width:420px;width:100%;margin:0"><div id="dlgMsg" style="font-size:16px;margin-bottom:14px"></div><div style="display:flex;gap:8px;justify-content:flex-end"><button class="btn sec" id="dlgNo">Hủy</button><button class="btn" id="dlgYes">Đồng ý</button></div></div></div>
+<script>
+// Ngân hàng câu hỏi – nguồn: "Tóm lược Quy trình – Quy định · Chuẩn Thủ lĩnh, Vững Quy trình" + TB 58/TB-TMN
+// Định dạng: [mục, câu hỏi, [ĐÁP ÁN ĐÚNG, sai1, sai2, sai3], giải thích]
+// Ngân hàng câu hỏi – nguồn: "Sổ tay tóm lược Quy trình – Quy định" (cập nhật 11/2026)
+// Định dạng: [mục, câu hỏi, [ĐÁP ÁN ĐÚNG, sai1, sai2, sai3], giải thích]
+const BANK = [
+// ===== A · Khối HCNS-TH =====
+["A1.1","Thời gian làm việc của CBNV theo QĐ01 là:",["48 giờ/tuần, thứ 2 – thứ 7","44 giờ/tuần, thứ 2 – thứ 6","40 giờ/tuần, thứ 2 – thứ 6","48 giờ/tuần, thứ 2 – Chủ nhật"],"QĐ01: làm 48 giờ/tuần, thứ 2 – thứ 7."],
+["A1.1","Số ngày nghỉ Tết Âm lịch hưởng nguyên lương theo QĐ01:",["05 ngày","03 ngày","04 ngày","07 ngày"],"Tết DL 01 · Tết ÂL 05 · Giỗ Tổ 01 · 30/4 01 · 1/5 01 · 2/9 01."],
+["A1.1","Làm lễ, Tết theo yêu cầu CĐT, BCH gửi danh sách (BM01/BM02) trước bao lâu và CBNV được gì?",["Trước 05 ngày; được cộng phép năm","Trước 03 ngày; được cộng phép năm","Trước 05 ngày; được trả 300% lương","Trước 10 ngày; được nghỉ bù"],"QĐ01: gửi danh sách trước 05 ngày, được cộng phép năm."],
+["A1.1","Mũ BHLĐ màu đỏ tại công trình dành cho:",["Cán bộ ATLĐ","Thủ kho","Quản lý, giám sát, QS","Chỉ huy trưởng"],"Mũ trắng: quản lý, giám sát, QS · đỏ: ATLĐ · xanh: thủ kho."],
+["A1.2","Tiêu chuẩn độ tuổi tuyển dụng theo QĐ02:",["18 – 40 tuổi","18 – 35 tuổi","20 – 45 tuổi","22 – 40 tuổi"],"QĐ02: 18 – 40 tuổi, chuyên môn phù hợp, đạo đức và sức khỏe tốt."],
+["A1.3","Chính sách tăng lương theo QĐ03:",["01 lần/năm vào tháng 10; bổ nhiệm lên cấp bậc 1B, 2A, 2B, 2C tăng 10%/cấp bậc","02 lần/năm vào tháng 4 và 10","01 lần/năm vào tháng 1; tăng 15%/cấp bậc","01 lần/năm vào tháng 10; tăng 5%/cấp bậc"],"QĐ03: tăng lương 01 lần/năm vào tháng 10 · bổ nhiệm lên cấp bậc 1B, 2A, 2B, 2C tăng 10%/cấp bậc."],
+["A1.3","Nghỉ việc với HĐLĐ không xác định thời hạn phải báo trước:",["45 ngày","30 ngày","60 ngày","15 ngày"],"QĐ03: HĐ 12–36 tháng báo trước 30 ngày; không xác định thời hạn 45 ngày."],
+["A1.4","CBNV cấp 3B – 6 đủ bao nhiêu ngày công tác xa (CTX) thì được nghỉ 04 ngày?",["40 ngày","30 ngày","21 ngày","14 ngày"],"QĐ04: 2B 14 ngày · 2C, 2D 21 ngày · 3A 30 ngày → nghỉ 03 ngày; 3B – 6 đủ 40 ngày → nghỉ 04 ngày."],
+["A1.4","Không về phép CTX, CBNV cấp 2B – 2D được hỗ trợ:",["200.000đ/ngày","100.000đ/ngày","150.000đ/ngày","300.000đ/ngày"],"QĐ04: 2B – 2D 200.000đ/ngày · 3A – 6 100.000đ/ngày, chi đầu năm sau."],
+["A1.5","Tỷ lệ hưởng phụ cấp CTX theo loại hợp đồng:",["Chính thức 100% · dự án 70% · thử việc 50%","Chính thức 100% · dự án 50% · thử việc 70%","Chính thức 100% · dự án 80% · thử việc 60%","Chính thức, dự án 100% · thử việc 50%"],"QĐ05; phụ cấp trả ngày 10 tháng sau."],
+["A1.8","Lương trả ngày 25 hằng tháng; nếu ngày 25 trúng Chủ nhật thì trả vào:",["Ngày 26","Ngày 24","Ngày 27","Ngày 23"],"QĐ07: trúng thứ 7 → ngày 24 · trúng CN → ngày 26."],
+["A1.9","Mức hỗ trợ du lịch/năm cho cấp 3A – 6:",["3 triệu","5 triệu","10 triệu","2 triệu"],"QĐ08: cấp 1, 2A, 2B 10 triệu · 2C, 2D 5 triệu · 3A – 6 3 triệu; chi ngày 05/03."],
+["A1.9","Chi phí khám sức khỏe từ mức nào bắt buộc chuyển khoản?",["Từ 5 triệu trở lên","Từ 3 triệu trở lên","Từ 10 triệu trở lên","Mọi mức"],"QĐ08: khám tối đa 10 / 5 / 3 triệu, 01 lần/năm; từ 5 triệu bắt buộc chuyển khoản."],
+["A2.2","Chi phí công trình của 1 NCC trong ngày từ 5 triệu trở lên phải:",["Đưa vào công nợ, thanh toán chuyển khoản","Chi tiền mặt có chữ ký CHT","Ứng tiền mặt theo BM01","Chi tiền mặt, báo cáo sau"],"QĐ11: tiền mặt chỉ áp dụng cho chi phí dưới 5 triệu/NCC/ngày."],
+["A2.2","Mức khách sạn công tác tối đa theo QĐ11:",["700.000đ/ngày/phòng","500.000đ/ngày/phòng","600.000đ/ngày/phòng","800.000đ/ngày/phòng"],"QĐ11: tối đa 700.000đ/ngày/phòng."],
+["A2.7","Ai được nắm đơn giá hợp đồng CĐT (QĐ16)?",["GĐDA, QLDA, CHT, CHP, Trưởng bộ phận QS, Trưởng nhóm QS, QS phụ trách HĐ","Toàn bộ BCH công trình","Giám sát và thủ kho","Mọi CBNV Khối KT-KH"],"Đơn giá bảo mật kể cả bản nháp, đang thương lượng; bộ phận khác không được kèm đơn giá."],
+["A2.8","Bill đội đợt 2: gửi về QS-TT trước 08h00 ngày nào và thanh toán ngày nào?",["Ngày 18 – thanh toán ngày 25","Ngày 15 – thanh toán ngày 25","Ngày 18 – thanh toán ngày 30","Ngày 20 – thanh toán ngày 25"],"QĐ17: đợt 2 gửi ngày 18 → trình QS-KS ngày 22 → thanh toán ngày 25."],
+["A3.4","Mức xử phạt nhóm 7.1 (vi phạm nội quy) theo thứ tự:",["Cảnh cáo → 500.000đ → 1.000.000đ → cắt thưởng","500.000đ → 1.000.000đ → sa thải","Cảnh cáo → 1.000.000đ → cắt thưởng","1 triệu → 2 triệu → cắt thưởng 06 tháng"],"QĐ22: 7.1 cảnh cáo → 500.000đ → 1.000.000đ → cắt thưởng (nhóm 7.2 mới là 1 triệu → 2 triệu → …)."],
+["A3.5","Quỹ Công đoàn thu bao nhiêu và thu như thế nào?",["200.000đ/người/tháng, trừ thẳng vào lương","100.000đ/người/tháng, đóng tiền mặt","200.000đ/người/quý, trừ vào lương","1 ngày lương/năm"],"QĐ23: thu 200.000đ/người/tháng, trừ thẳng vào lương."],
+["A3.8","Công nhật làm việc Chủ nhật được tính:",["1,5 công","1,0 công","2,0 công","2,5 công"],"QĐ26: Chủ nhật 1,5 công; ngày lễ 2,0 công (duyệt trước 05 ngày)."],
+["A1.2","CHT/CHP từ hồ sơ vắng lai hoặc nhân sự dự án khác giới thiệu thì ai trực tiếp phỏng vấn?",["Tổng giám đốc","GĐDA/QLDA","Phòng Nhân sự","BCH công trình"],"CHT/CHP do GĐDA/QLDA giới thiệu cho chính dự án đó: GĐDA, QLDA trực tiếp phỏng vấn."],
+["A1.3","Thời gian thử việc theo QĐ03:",["30 – 60 ngày","01 – 03 tháng","60 – 90 ngày","Đúng 06 tháng"],"QĐ03: thử việc 30–60 ngày · HĐ dự án 01–03 tháng · chính thức 12–36 tháng hoặc không xác định thời hạn."],
+["A1.9","Quà cưới cấp 2A – 6 theo QĐ08:",["Thử việc 10 triệu; chính thức 30 triệu; CBNV cùng công ty tặng thêm 10 triệu","Thử việc 5 triệu; chính thức 10 triệu","Thử việc 10 triệu; chính thức 20 triệu","Thử việc 10 triệu; chính thức 30 triệu, không tặng thêm"],"Vợ CBNV nam sinh con: cấp 1, 2 là 5 triệu; cấp 3A – 6 là 2 triệu."],
+["A2.3","Chi phí ngoại giao BGĐ 2: đề xuất ứng (BM01) gửi HCNS trước 11h00 ngày 4, 14, 24 thì ai duyệt vào ngày 5, 15, 25?",["Chủ tịch HĐQT","Tổng Giám đốc","GĐ Khối HCNS-TH","Phó TGĐ thường trực"],"QĐ12: chuyển tiền trong 01 ngày làm việc sau khi duyệt; giải chi (BM02) ngày 01 hằng tháng."],
+["A3.9","Đội thi công đủ 05 tháng liên tục được về phép 1 lần, Công ty hỗ trợ:",["Chỉ hỗ trợ vé 1 chiều quay lại công trình","Vé khứ hồi","Toàn bộ vé hai chiều","Không hỗ trợ"],"QĐ27: phiếu book vé (BM01) gửi trước 7–10 ngày; nộp cùi vé trong 10 ngày, không nộp → trừ toàn bộ tiền vé vào Bill."],
+// ===== B · Khối KT-KH =====
+["B1.2","Bill đội đợt 1: nếu ngày thanh toán (ngày 10) trúng thứ 7 thì:",["Thanh toán sớm 1 ngày","Thanh toán ngày hôm sau","Thanh toán thứ 2","Vẫn thanh toán ngày 10"],"TB 2.1: trúng thứ 7 → thanh toán sớm 1 ngày · trúng CN → thanh toán ngày hôm sau."],
+["B1.2","Bill đội đợt 1: QS-KS trình GĐ Khối KT-KH lúc 08h00 ngày nào?",["08","07","09","10"],"TB 2.1: đợt 1 gửi QS-TT trước 08h00 ngày 03 → QS-KS ngày 07 → QS-KS trình GĐ Khối KT-KH ngày 08 → thanh toán ngày 10."],
+["B1.3","Bản cứng Bill HKD đã ký phải gửi chậm nhất:",["08h00 ngày 20 và 05 (tháng sau)","08h00 ngày 10 và 25","08h00 ngày 03 và 18","15h00 ngày 10 và 25"],"TB 2.2: bản cứng đã ký gửi chậm nhất 08h00 ngày 20, 05 tháng sau."],
+["B1.3","File Bill HKD còn lỗi sau 2 lần phản hồi thì:",["Không thanh toán trong đợt","Thanh toán một phần","Thanh toán sau 07 ngày","Vẫn thanh toán, phạt BCH"],"TB 2.2: file còn lỗi sau 2 lần phản hồi → không thanh toán trong đợt."],
+["B1.4","Từ 01/06/2023, hạng mục phát sinh:",["Không được triển khai trước; chỉ thi công khi có phê duyệt giá + giá trị tạm ứng (hoặc chỉ đạo trực tiếp Ban TGĐ)","Được triển khai trước nếu CHT đồng ý","Được làm trước, hợp thức hóa trong 30 ngày","Được làm trước nếu giá trị dưới 10 triệu"],"TB 3.1 – 3.3."],
+["B1.4","Trường hợp buộc làm trước (theo PMI của CĐT…), CHT xin chủ trương ai?",["Phó TGĐ thường trực, kèm “Tờ trình” (BKSNB/TTCP-01/2023)","Chủ tịch HĐQT","GĐ Khối KT-KH","Trưởng phòng HCNS-TH"],"Gửi phiếu báo cáo triển khai trước trong 05 ngày từ khi thi công."],
+["B1.5","Dùng chi phí gói khác bù gói vượt, lần 2 vi phạm sẽ bị:",["Cắt 100% thưởng, sa thải người đứng đầu dự án","Cắt 50% thưởng đợt, quyết toán","Khiển trách bằng văn bản","Phạt 1.000.000đ"],"TB 4: lần 1 cắt 50% thưởng đợt, quyết toán · lần 2 cắt 100%, sa thải người đứng đầu dự án."],
+["B1.7","Kỳ chốt sản lượng công trình hằng tháng:",["Ngày 26 tháng này – 25 tháng sau","Ngày 01 – 30 hằng tháng","Ngày 21 – 20 tháng sau","Ngày 16 – 15 tháng sau"],"TB 6.1; email QS Kiểm soát trước 17h ngày 28."],
+["B1.11","Từ 15/06/2026, hồ sơ thanh quyết toán thầu phụ, Bill HKD/Tổ đội (công trình đã xác nhận) do ai duyệt?",["GĐ Khối KT-KH (Ông Lê Viết Thái)","Phó TGĐ (Ông Lê Văn Hải)","Chủ tịch HĐQT","GĐ TC-KT"],"TB 9: tạm ứng trước HĐ/PLHĐ thầu phụ do Phó TGĐ Lê Văn Hải duyệt."],
+["B1.13","Tạm ứng Bill HKD (TB 10.1) phải:",["Nhỏ hơn 40% giá trị dự kiến HKD được nhận thanh toán","Nhỏ hơn 20% giá trị HĐ","Tối đa 50% giá trị dự kiến","Bằng 100% giá trị khối lượng đã làm"],"TB 10.1 · Số 54 (02/11/2026)."],
+["B1.14","Mức ứng Bill ban đầu tối đa (MMTB, vật tư phụ, vận chuyển cơ giới):",["20% tổng giá trị dự trù ban đầu","10% tổng giá trị dự trù","30% tổng giá trị HĐ","40% giá trị dự trù"],"Ký duyệt: QLDA/CHT → Khối KT-KH → P.TC-KT → Ban TGĐ."],
+["B2.2","BCH đề xuất kế hoạch mua hàng NCC trước:",["12h00 thứ 3, 5, 7","12h00 thứ 2, 4, 6","08h00 thứ 3, 5, 7","15h00 thứ 2, 4, 6"],"Trình QS-KS trước 08h00 thứ 2, 4, 6 → Phó TGĐ thường trực duyệt trước 15h00 thứ 2, 4, 6."],
+["B2.3","Thanh toán NCC theo đợt công nợ được thực hiện:",["15h00 – 17h00 ngày 10, 25","15h00 – 17h00 ngày 15, 30","08h00 – 17h00 ngày 05, 20","Thứ 4 và thứ 6 hằng tuần"],"Chuyển tiền thứ 4 & thứ 6 chỉ áp dụng cho thanh toán hằng tuần (tạm ứng, NCC mới cần gấp)."],
+["B2.4","Vật tư phụ công trình tự mua: tổng đến cuối dự án tối đa:",["≤ 10 triệu hoặc ≤ 0,3% doanh thu","≤ 20 triệu hoặc ≤ 0,5% doanh thu","≤ 5 triệu hoặc ≤ 0,1% doanh thu","≤ 10 triệu hoặc ≤ 3% doanh thu"],"QLDA/CHT duyệt; mua xong báo hình ảnh, hóa đơn lên nhóm Tổng 2."],
+["B3.2","Bảo hành thầu phụ dưới 5 triệu được xử lý:",["Trả luôn, kèm cam kết","Giữ đến hết bảo hành","Giữ đến hết chứng thư","Trả sau 30 ngày"],"Từ 5 triệu trở lên: giữ đến hết bảo hành hoặc chứng thư."],
+["B3.4","Còn 10 ngày là hết hạn chứng thư bảo lãnh tạm ứng của thầu phụ, Công ty:",["Gửi ngân hàng thu hồi","Gửi công văn nhắc","Yêu cầu thầu phụ gia hạn","Chờ thầu phụ phản hồi"],"TB 43: còn 30 ngày nhắc → còn 20 ngày thầu phụ gia hạn (≥ 60 ngày) → còn 10 ngày gửi ngân hàng thu hồi."],
+["B3.8","Tỷ lệ giữ lại đến bàn giao với nhân công không bao vật tư (HĐ ký từ 15/02/2025):",["10%","15%","5%","20%"],"TB 07: nhân công không bao vật tư 10% (trước đây 15%); hạng mục còn lại 15%."],
+["B4.1","Thời điểm 4 của quy trình DT-CP xảy ra khi:",["Một chi phí trực tiếp vượt 80% giá trị dự trù","Một chi phí vượt 100% dự trù","Công trình hoàn thành","Cuối mỗi tháng"],"BP kiểm soát báo BCH khi chi phí trực tiếp (vật tư chính, thầu phụ, nhân công) vượt 80% dự trù."],
+["B4.1","Thời điểm 5 của DT-CP: BCH cập nhật giá trị quyết toán sau:",["60 ngày kể từ khi hoàn thành/bàn giao hoặc Ban TGĐ duyệt báo cáo kết thúc dự án","30 ngày kể từ khi bàn giao","90 ngày kể từ khi quyết toán CĐT","07 ngày kể từ khi bàn giao"],"Thời điểm 3: hằng tháng BCH gửi BP kiểm soát trước 17h00 ngày 25."],
+["B1.9","Triển khai thi công Nhà quan hệ ngoại giao (TB 7): làm việc trước với ai và báo cáo trực tiếp ai?",["Trưởng phòng Đấu thầu cấp 2; báo cáo Chủ tịch HĐQT","Phó TGĐ thường trực; báo cáo TGĐ","GĐ Khối KT-KH; báo cáo Phó TGĐ","Trưởng phòng HCNS-TH; báo cáo Chủ tịch HĐQT"],"TB 7 · 10/02/2026."],
+["B1.12","Đội vào thi công phải gửi hồ sơ đăng ký HKD về TC-KT trong:",["02 ngày","05 ngày","07 ngày","10 ngày"],"TB 10 (16/06/2026): ngày 10 & 25 báo danh sách đội chưa lên HKD; bản cứng 02 bộ gửi TC-KT chậm nhất 10 ngày sau thanh toán."],
+["B2.3","NCC đợt công nợ: QS-KS trình trước 17h30 ngày 03, 18 thì Phó TGĐ thường trực duyệt trước ngày nào và chuyển TC-KT ngày nào?",["Duyệt trước ngày 6, 21 → TC-KT ngày 07, 22","Duyệt trước ngày 5, 20 → TC-KT ngày 06, 21","Duyệt trước ngày 8, 23 → TC-KT ngày 10, 25","Duyệt trước ngày 10, 25 → TC-KT ngày 15, 30"],"Thủ kho, NCC gửi phiếu nhận hàng, công nợ về BPVT trước 07h30 ngày 01, 16; thanh toán NCC 15h00 – 17h00 ngày 10, 25."],
+["B3.7","Quy trình lựa chọn nhà thầu phụ (TB 25): BCH đề xuất phạm vi, khối lượng thầu phụ trong bao lâu kể từ khi trúng thầu?",["03 ngày","05 ngày","07 ngày","10 ngày"],"Sau đó gửi danh sách thầu phụ (gồm tiến độ & nhân lực) về Bộ phận Đấu thầu trong 03 ngày tiếp theo."],
+// ===== C · Khối TC-KT =====
+["C1.1","Hóa đơn mua hàng phải gửi về Công ty chậm nhất:",["30 ngày kể từ ngày phát sinh","15 ngày","07 ngày","60 ngày"],"Mua ở đâu lấy hóa đơn tại đơn vị đó, không qua trung gian."],
+["C1.2","Hóa đơn điện tử gửi về TC-KT thế nào (TB 55)?",["Gửi đồng thời 2 nơi: file cứng/PDF cho người giải chi + file mềm về email lưu trữ hóa đơn","Chỉ gửi email lưu trữ","Chỉ nộp file cứng cho người giải chi","Gửi trực tiếp cho kế toán trưởng"],"Thiếu 1 trong 2 nơi → TC-KT không chuyển tiền."],
+["C1.3","Hóa đơn sai tên, địa chỉ người mua (không sai MST, tiền, thuế) thì:",["Gửi Mẫu 04/SS-HĐĐT, không lập HĐ mới","Lập hóa đơn thay thế","Lập hóa đơn điều chỉnh","Hủy và xuất lại"],"TB 56 (TT 91/2026/TT-BTC, hiệu lực 01/07/2026)."],
+["C1.4","Hóa đơn 1 NCC trong ngày từ 5 triệu trở lên:",["Bắt buộc chuyển khoản từ TK Công ty","Được chi tiền mặt có ủy quyền","Chi tiền mặt, nộp bổ sung chứng từ","Chuyển khoản từ TK cá nhân"],"TB 21: áp dụng từ 01/07/2025 (NĐ 181/2025/NĐ-CP); dưới 5 triệu: tiền mặt hoặc chuyển khoản."],
+["C2.1","Khi HKD vào thi công, Giám sát lập bộ hồ sơ gồm:",["Hợp đồng giao khoán + Văn bản thỏa thuận + bản cam kết có chữ ký công nhân","Chỉ Hợp đồng giao khoán","Hợp đồng lao động của công nhân","Bill ban đầu + CCCD"],"TB 57 (06/11/2026); quyết toán dùng Phụ lục giao khoán."],
+["C2.2","Hồ sơ đăng ký người phụ thuộc gửi về đâu và gồm gì?",["Phòng TC-KT: tờ khai + CCCD/giấy khai sinh + giấy tờ chứng minh quan hệ","Phòng HCNS: đơn xin giảm trừ","Cơ quan thuế trực tiếp","Ban Kiểm soát: bản sao CCCD"],"TB 10 (04/07/2026); người lao động chịu trách nhiệm tính trung thực."],
+["C3.1","Thanh toán HKD: GĐ Khối KT-KH duyệt trước 08h00 và TC-KT thanh toán trước 15h00 vào ngày:",["10 và 25","15 và 30","08 và 23","13 và 28"],"Bản cứng đã ký về TC-KT chậm nhất 08h00 ngày 20, 05 tháng sau."],
+["C3.2","Tạm ứng HKD: QS-TT gửi danh sách đã duyệt trước 08h30 và TC-KT giải ngân trước 16h30 vào:",["Thứ 6","Thứ 4","Thứ 2","Thứ 4 và thứ 6"],"Trừ tuần chuyển Bill; báo cáo trong nhóm “Dòng tiền đi”."],
+["C3.4","Thanh toán công nợ thầu phụ được giải ngân vào ngày:",["15 và 30","10 và 25","08 và 23","13 và 28"],"QS-KS gửi danh sách đã duyệt trước 08h00 ngày 13, 28 → giải ngân ngày 15, 30."],
+["C3.7","Thanh toán NCC theo đợt công nợ: QS-KS gửi trước 17h30 ngày nào?",["07 và 22","05 và 20","03 và 18","10 và 25"],"Gửi trước 17h30 ngày 07, 22 → giải ngân ngày 10, 25."],
+["C3.8","Thanh toán NCC hằng tuần: Khối KT-KH gửi trước 08h30 và giải ngân trước 16h30 vào:",["Thứ 4 và thứ 6","Thứ 3 và thứ 5","Thứ 2 và thứ 6","Thứ 6"],"Áp dụng: đơn hàng, HĐ tạm ứng trước khi nhận hàng; hồ sơ gấp cho NCC mới."],
+["C3.9","Nhận bản gốc chứng thư bảo lãnh xong, phải gửi scan chứng thư + CV đề nghị tạm ứng đến PMU/CĐT trong:",["02 ngày làm việc","05 ngày làm việc","01 ngày","07 ngày"],"Khối KT-KH chuyển HĐ/PL → TC-KT trình Ban TGĐ duyệt → gửi ngân hàng."],
+["C3.5","Thanh toán ngoài đợt công nợ thầu phụ: QS-KS gửi trước 08h00 và giải ngân trước 17h00 vào ngày:",["08 và 23","10 và 25","13 và 28","15 và 30"],"Trúng thứ 7, CN → thứ 2 tuần kế tiếp."],
+// ===== D · Ban Kiểm soát =====
+["D1.2","Người vận hành cẩu tháp phải được kiểm tra:",["Huyết áp, nồng độ cồn","Chỉ chứng chỉ vận hành","Thị lực và thính lực","Nồng độ cồn, ma túy"],"Thiết bị nghiêm ngặt: kiểm định còn hiệu lực, bảo hiểm, người vận hành có chứng chỉ."],
+["D1.4","Lỗi cấp 2 – Trung bình được xử lý bằng:",["Thông báo công việc không phù hợp → BCH gửi Báo cáo phản hồi","Nhắc nhở trực tiếp/trên nhóm","Biên bản làm việc, cảnh cáo/xử phạt","Dừng ngay, QĐ kỷ luật BCH"],"Cấp 1 nhẹ: nhắc nhở · Cấp 3: biên bản làm việc · Cấp 4: dừng ngay, QĐ kỷ luật BCH."],
+["D1.4","Lỗi quá hạn khắc phục hoặc tái diễn sẽ:",["Nâng lên cấp độ kế tiếp","Giữ nguyên cấp độ","Hạ một cấp","Chuyển sang xử lý nội bộ BCH"],"D1.4: quá hạn khắc phục hoặc tái diễn → nâng lên cấp độ kế tiếp."],
+["D1.4","Ví dụ tiến độ nào là lỗi cấp 1?",["Tracking nộp chậm","Trượt tiến độ nội bộ cùng hạng mục > 3 lần liên tiếp","Bê tông không đạt cường độ","Thiết bị hết kiểm định"],"Trượt tiến độ nội bộ > 3 lần liên tiếp = cấp 2; ví dụ cấp 3: làm việc trên cao không chống rơi, thiết bị hết kiểm định…"],
+["D2.1","Cấp thẻ an toàn – B1: BCH gửi hồ sơ đề xuất (BM01 + scan CCCD) qua mail trước:",["11h00 ngày 15 và 30","08h00 ngày 10 và 25","11h00 ngày 18 và 03","17h00 ngày 25"],"TB 53; B3: trình Ban TGĐ duyệt ngày 18 và 03."],
+["D2.1","Trong quy trình cấp thẻ an toàn, “ngày” được hiểu là:",["Ngày làm việc; hạn rơi CN/lễ thì gửi ngày làm việc liền trước","Ngày dương lịch","Ngày làm việc; hạn rơi CN/lễ thì gửi ngày liền sau","Ngày làm việc, không điều chỉnh"],"B5: nhận thẻ sau 05 ngày; Ban An toàn lưu bản gốc, cập nhật Sổ BM03."],
+["D2.2","Thiếu/hết hạn hồ sơ bắt buộc hoặc chưa đủ tuổi thuộc mức nào?",["Mức 4 – chưa cho làm việc","Mức 3 – xử lý ngay","Mức 2 – đạt có điều kiện","Mức 1 – đạt 100%"],"Mức 1 đạt 100% · Mức 2 đạt có điều kiện · Mức 3 quá hạn → xử lý ngay · Mức 4 không đạt → chưa cho làm việc."],
+["D2.2","Hồ sơ nào được bổ sung sau, tối đa 07 ngày?",["Cam kết ATLĐ và thẻ ra vào chính thức","CCCD và HĐLĐ","Khám sức khỏe và bảo hiểm tai nạn","Huấn luyện ATVSLĐ"],"Bắt buộc trước khi làm việc: CCCD, HĐLĐ, khám sức khỏe, BH tai nạn, huấn luyện ATVSLĐ, cấp phát BHLĐ."],
+["D3.1","Thời hạn báo cáo quân số hằng ngày:",["Giám sát báo trước 09h00; Thư ký/QS tổng hợp lên Viber trước 10h00, tăng ca trước 19h00","Giám sát trước 10h00; tổng hợp trước 11h00","Giám sát trước 08h00; tổng hợp trước 09h00","Tổng hợp trước 10h00, tăng ca trước 17h00"],"TB 03 (14/01/2026)."],
+["D3.2","Về vật liệu bao che sản phẩm hoàn thiện, điều nào đúng?",["Nghiêm cấm ván ép dày 7mm; va chạm mạnh/giá trị cao dùng ván ép phủ phim 15mm","Cho phép ván ép 7mm mọi trường hợp","Dùng ván phủ phim 7mm","Chỉ dùng nilon, thảm cho mọi vị trí"],"TB 05: ít va chạm dùng nilon, thảm, bạt tái sinh; BCH thu hồi, đóng kiện, tái sử dụng ván phim."],
+["D3.4","Chương trình Văn hóa – Hành động – Kết quả: tháng 11 là:",["Tháng Hành động","Tháng Văn hóa","Tháng Kết quả","Tháng An toàn"],"TB 49: tháng 10 Văn hóa · 11 Hành động · 12 Kết quả; phương châm “Nói đi đôi với làm”."],
+["D3.6","Không gửi biên bản phạt (CĐT/nội bộ) trong 07 ngày mà bị phát hiện thì:",["Phạt 200% giá trị biên bản","Phạt 100% giá trị biên bản","Phạt 500.000đ","Nhắc nhở"],"TB 08: khấu trừ vào thưởng quyết toán công trình; hiệu lực 01/06/2023."],
+["D3.7","Báo cáo Tracking tiến độ tuần gửi Viber “Nhóm Lãnh đạo khu vực” trước:",["11h00 thứ 7 hằng tuần","09h00 thứ 2 hằng tuần","17h00 thứ 6 hằng tuần","11h00 ngày 25 hằng tháng"],"TB 35: Tracking nộp chậm, thiếu thông tin = lỗi tiến độ cấp 1."]
+];
+
+// ===== Câu tự luận: [mục, đề, [các ý chính]] (đáp án mẫu tự ghép từ các ý chính) =====
+const ESSAYS = [
+["D2.1","Trình bày quy trình 5 bước cấp thẻ an toàn tại BCH (TB 53): đối tượng, đơn vị chủ trì và cách hiểu “ngày”.",["Áp dụng mọi người làm việc tại công trình (CBNV, công nhân, tổ đội, HKD); chủ trì: Ban An toàn – BKS","B1: BCH gửi hồ sơ (BM01 + scan CCCD) qua mail trước 11h00 ngày 15 và 30","B2: Ban An toàn kiểm tra Đạt/Không đạt; BCH bổ sung tối đa 03 ngày","B3: Trình Ban TGĐ duyệt ngày 18 và 03; báo lịch huấn luyện cho BCH","B4: BCH tổ chức huấn luyện, điểm danh, ghi kết quả vào BM02","B5: Nhận thẻ sau 05 ngày; Ban An toàn lưu bản gốc, cập nhật Sổ theo dõi BM03","“Ngày” là ngày làm việc; hạn rơi vào CN/lễ thì gửi ngày làm việc liền trước"]],
+["B4.1","Trình bày 5 thời điểm cập nhật Doanh thu – Chi phí (DT-CP) và trách nhiệm ở từng thời điểm.",["Thời điểm 1: Bộ phận vật tư + QSTT kiểm tra, gửi BCH bảng tổng hợp đề xuất tham chiếu chi phí trực tiếp","Thời điểm 2: BCH kiểm tra, phản hồi DT-CP → BP vật tư + QSTT trình Phó TGĐ thường trực phê duyệt","Thời điểm 3: BCH cập nhật doanh thu, chi phí thực tế gửi BP kiểm soát trước 17h00 ngày 25 hằng tháng","Thời điểm 4: một chi phí trực tiếp (vật tư chính, thầu phụ, nhân công) vượt 80% dự trù → BP kiểm soát báo BCH","Thời điểm 5: sau 60 ngày kể từ khi hoàn thành/bàn giao hoặc Ban TGĐ duyệt báo cáo kết thúc dự án → BCH cập nhật giá trị quyết toán vào DT-CP"]],
+["B3.4","Trình bày quy trình gia hạn, thu hồi chứng thư bảo lãnh tạm ứng thầu phụ (TB 43) và quy trình phát hành chứng thư bảo lãnh (C3.9).",["Thời hạn chứng thư: tiến độ HĐ + 45 ngày (HĐ < 90 ngày) · + 30 ngày (HĐ > 90 ngày)","Còn 30 ngày: gửi công văn nhắc","Còn 20 ngày: thầu phụ gia hạn (≥ 60 ngày)","Còn 10 ngày: gửi ngân hàng thu hồi; thầu phụ phản hồi công văn hoàn trả tạm ứng trong 03 ngày","Phát hành: Khối KT-KH chuyển HĐ/PL (hoặc CV gia hạn) → TC-KT trình Ban TGĐ duyệt → gửi ngân hàng","Nhận bản gốc → gửi scan chứng thư + CV đề nghị tạm ứng đến PMU/CĐT trong 02 ngày làm việc"]],
+["D1.4","Trình bày 4 cấp độ phân loại lỗi trong Quy trình An toàn – Chất lượng – Tiến độ, cách xử lý và ví dụ.",["Cấp 1 – Nhẹ: nhắc nhở trực tiếp/trên nhóm → BCH khắc phục, phản hồi (VD: tracking nộp chậm)","Cấp 2 – Trung bình: Thông báo công việc không phù hợp → BCH gửi Báo cáo phản hồi (VD: trượt tiến độ nội bộ cùng hạng mục > 3 lần liên tiếp)","Cấp 3 – Nghiêm trọng: Biên bản làm việc, xác định trách nhiệm, cảnh cáo/xử phạt, có thể dừng công việc (VD: làm việc trên cao không chống rơi, thiết bị hết kiểm định, bê tông không đạt cường độ)","Cấp 4 – Đặc biệt nghiêm trọng/sự cố: dừng ngay, cấp cứu, bảo vệ hiện trường, QĐ kỷ luật BCH","Quá hạn khắc phục hoặc tái diễn → nâng lên cấp độ kế tiếp"]]
+];
+
+</script>
+<script>
+"use strict";
+const GROUPS={A:"A · Khối HCNS-TH",B:"B · Khối KT-KH",C:"C · Khối TC-KT",D:"D · Ban Kiểm soát"};
+const SECNAME={"A1":"Nội quy, nhân sự & chế độ","A2":"Vận hành & chi phí","A3":"Vật tư, công nhật, quỹ & xử phạt","B1":"Hộ kinh doanh & Tổ đội","B2":"Nhà cung cấp & Hợp Nhân","B3":"Thầu phụ","B4":"Doanh thu – Chi phí","C1":"Hóa đơn & chứng từ","C2":"Hợp đồng HKD & thuế TNCN","C3":"Tạm ứng, thanh toán & bảo lãnh","D1":"An toàn – Chất lượng – Tiến độ","D2":"Thẻ an toàn & Nhân lực","D3":"Quy trình, thông báo khác"};
+const EXAM_MIX={A:5,B:5,C:4,D:4}; // 18 câu trắc nghiệm
+const MCQ_PT=5, ESSAY_PT=10, PASS=85, EXAM_MIN=30;
+const Q=BANK.map((r,i)=>({id:"q"+i,sec:r[0],g:r[0]==="TB58"?"T":r[0][0],q:r[1],opts:r[2],e:r[3]}));
+const E=ESSAYS.map((r,i)=>({id:"e"+i,sec:r[0],q:r[1],keys:r[2],model:r[3]||r[2].join(". ")}));
+const $=s=>document.querySelector(s);
+const app=$("#app");
+function ask(msg,yes,okOnly){const d=$("#dlg");$("#dlgMsg").textContent=msg;const y=$("#dlgYes"),n=$("#dlgNo");n.style.display=okOnly?"none":"";y.textContent=okOnly?"Đóng":"Đồng ý";d.classList.remove("hide");y.onclick=()=>{d.classList.add("hide");if(yes)yes()};n.onclick=()=>d.classList.add("hide")}
+function note(msg,then){ask(msg,then,true)}
+function esc(s){return String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]))}
+function shuffle(a){a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
+function secLabel(s){const k=s==="TB58"?"TB":s.slice(0,2);return (s==="TB58"?"TB 58":s)+" · "+(SECNAME[k]||"")}
+// storage (an toàn)
+const store={get(k,d){try{const v=localStorage.getItem("ctl3_"+k);return v?JSON.parse(v):d}catch(e){return d}},set(k,v){try{localStorage.setItem("ctl3_"+k,JSON.stringify(v))}catch(e){}}};
+let WRONG=store.get("wrong",{}); // id -> count
+let HIST=store.get("hist",[]);
+function saveWrong(){store.set("wrong",WRONG)}
+function markWrong(id){WRONG[id]=(WRONG[id]||0)+1;saveWrong()}
+function markRight(id){if(WRONG[id]){delete WRONG[id];saveWrong()}}
+// mỗi câu: thứ tự đáp án xáo trộn
+function prep(q){const order=shuffle([0,1,2,3]);return {...q,order,ans:order.indexOf(0),pick:null,flag:false}}
+let timerInt=null;
+function stopTimer(){clearInterval(timerInt);timerInt=null;$("#timer").classList.add("hide")}
+function setTitle(t){$("#htitle").textContent=t}
+
+// ================= HOME =================
+function home(){
+  stopTimer();setTitle("Thi thử · Chuẩn Thủ lĩnh – Vững Quy trình");
+  const nW=Object.keys(WRONG).length;
+  const last=HIST.slice(-5).reverse();
+  app.innerHTML=`
+  <div class="card hero"><h2>“Chuẩn Thủ lĩnh – Vững Quy trình”</h2>
+   <div class="slogan">Hiểu đúng văn hóa · Nắm chắc quy trình · Thực thi chuẩn mực</div>
+   <div class="small" style="margin-top:10px;opacity:.9">Nội dung: Tóm lược Quy trình – Quy định · 19 câu (18 trắc nghiệm + 1 tự luận) · 30 phút · Đạt ≥ 85%</div></div>
+  <div class="grid">
+   <div class="tile" onclick="startExam()"><b>📝 Thi thử như thật</b><span>Bốc ngẫu nhiên 18 câu trắc nghiệm + 1 tự luận, đếm ngược 30 phút, chấm điểm và giải thích.</span></div>
+   <div class="tile" onclick="practiceSetup()"><b>🎯 Luyện tập theo chủ đề</b><span>Trả lời từng câu, xem ngay đáp án và giải thích. Ngân hàng ${Q.length} câu.</span></div>
+   <div class="tile" onclick="${nW?"startPractice('wrong')":""}" style="${nW?"":"opacity:.55;cursor:default"}"><b>🔁 Ôn câu đã sai (${nW})</b><span>${nW?"Làm lại các câu từng sai, trả lời đúng sẽ tự xóa khỏi danh sách.":"Chưa có câu sai nào được lưu."}</span></div>
+   <div class="tile" onclick="essayBank()"><b>✍️ Ôn tự luận (${E.length} đề)</b><span>Đề tự luận kèm các ý chính và đáp án mẫu để học thuộc.</span></div>
+   <div class="tile" onclick="book()"><b>📒 Sổ tay đáp án</b><span>Xem toàn bộ câu hỏi và đáp án đúng theo từng mục để học nhanh.</span></div>
+  </div>
+  ${last.length?`<div class="card" style="margin-top:14px"><b>Lịch sử thi thử gần đây</b><table><tr><th>Thời gian</th><th>Trắc nghiệm</th><th>Tổng điểm</th><th>Kết quả</th></tr>${last.map(h=>`<tr><td>${esc(h.t)}</td><td>${h.c}/18</td><td>${h.s}/100</td><td class="${h.s>=PASS?"pass":"fail"}"><b>${h.s>=PASS?"Đạt":"Chưa đạt"}</b></td></tr>`).join("")}</table></div>`:""}
+  <p class="muted small">Cách tính điểm thi thử (giả định): mỗi câu trắc nghiệm ${MCQ_PT} điểm (18 câu = 90 điểm), câu tự luận ${ESSAY_PT} điểm, tổng 100 điểm. Câu tự luận tự chấm bằng cách tích các ý đã viết đúng.</p>`;
+}
+
+// ================= EXAM =================
+let X=null;
+function pickExam(){
+  let out=[];
+  for(const g in EXAM_MIX){out=out.concat(shuffle(Q.filter(q=>q.g===g)).slice(0,EXAM_MIX[g]))}
+  // đủ 18 câu, tránh trùng mục quá nhiều
+  return shuffle(out).map(prep);
+}
+function startExam(){
+  X={qs:pickExam(),essay:E[Math.floor(Math.random()*E.length)],essayText:"",i:0,end:Date.now()+EXAM_MIN*60000,leave:0,strict:false,done:false};
+  $("#timer").classList.remove("hide");
+  clearInterval(timerInt);timerInt=setInterval(tick,500);tick();
+  setTitle("Đang thi thử");
+  renderExam();
+}
+function tick(){
+  if(!X||X.done)return;
+  const ms=Math.max(0,X.end-Date.now());const m=Math.floor(ms/60000),s=Math.floor(ms%60000/1000);
+  const t=$("#timer");t.textContent=String(m).padStart(2,"0")+":"+String(s).padStart(2,"0");
+  t.classList.toggle("low",ms<5*60000);
+  if(ms<=0){submitExam(true)}
+}
+document.addEventListener("visibilitychange",()=>{
+  if(document.hidden&&X&&!X.done){X.leave++;if(X.strict){submitExam(false,"Bài tự nộp vì bạn rời màn hình (chế độ nghiêm).")}else{const w=$("#leavewarn");if(w){w.classList.remove("hide");w.textContent="⚠️ Bạn đã rời màn hình "+X.leave+" lần. Khi thi thật, chỉ cần rời màn hình 1 lần là bài tự kết thúc và nộp."}}}
+});
+function renderExam(){
+  const n=X.qs.length+1, i=X.i, isEssay=i===X.qs.length;
+  const answered=X.qs.filter(q=>q.pick!==null).length+(X.essayText.trim()?1:0);
+  let body="";
+  if(!isEssay){
+    const q=X.qs[i];
+    body=`<div class="muted small">Câu ${i+1}/${n} · Trắc nghiệm</div><div class="q">${esc(q.q)}</div>
+    ${q.order.map((oi,k)=>`<div class="opt ${q.pick===k?"sel":""}" onclick="pickX(${k})"><span class="k">${"ABCD"[k]}</span><span>${esc(q.opts[oi])}</span></div>`).join("")}
+    <label class="small muted" style="display:inline-flex;gap:6px;margin-top:8px;cursor:pointer"><input type="checkbox" ${q.flag?"checked":""} onchange="X.qs[${i}].flag=this.checked;renderNav()"> Đánh dấu xem lại</label>`;
+  }else{
+    body=`<div class="muted small">Câu ${n}/${n} · Tự luận (${ESSAY_PT} điểm)</div><div class="q">${esc(X.essay.q)}</div>
+    <textarea id="essay" placeholder="Viết câu trả lời của bạn…" oninput="X.essayText=this.value;renderNav()">${esc(X.essayText)}</textarea>`;
+  }
+  app.innerHTML=`
+  <div id="leavewarn" class="warn ${X.leave?"":"hide"}">⚠️ Bạn đã rời màn hình ${X.leave} lần. Khi thi thật, chỉ cần rời màn hình 1 lần là bài tự kết thúc và nộp.</div>
+  <div class="card">${body}
+   <div class="bar" style="margin-top:16px"><button class="btn sec" onclick="go(-1)" ${i===0?"disabled":""}>← Câu trước</button>
+   <span class="muted small">Đã làm ${answered}/${n}</span>
+   ${i<n-1?`<button class="btn" onclick="go(1)">Câu sau →</button>`:`<button class="btn dark" onclick="confirmSubmit()">Nộp bài</button>`}</div></div>
+  <div class="card"><div class="bar" style="margin-bottom:10px"><b>Danh sách câu</b>
+   <label class="small" style="display:inline-flex;gap:6px;align-items:center;cursor:pointer"><input type="checkbox" ${X.strict?"checked":""} onchange="X.strict=this.checked"> Chế độ nghiêm: rời màn hình là tự nộp</label></div>
+   <div class="nav" id="nav"></div>
+   <div style="margin-top:12px;text-align:right"><button class="btn dark" onclick="confirmSubmit()">Nộp bài</button> <button class="btn sec" onclick="ask('Hủy bài thi này?',home)">Hủy</button></div></div>`;
+  renderNav();
+}
+function renderNav(){
+  const nav=$("#nav");if(!nav)return;
+  const n=X.qs.length+1;let h="";
+  for(let k=0;k<n;k++){const done=k<X.qs.length?X.qs[k].pick!==null:X.essayText.trim()!=="";const fl=k<X.qs.length&&X.qs[k].flag;
+    h+=`<button class="${done?"done":""} ${k===X.i?"cur":""} ${fl?"flag":""}" onclick="jump(${k})">${k===n-1?"TL":k+1}</button>`}
+  nav.innerHTML=h;
+}
+function pickX(k){X.qs[X.i].pick=k;renderExam()}
+function go(d){X.i=Math.min(X.qs.length,Math.max(0,X.i+d));renderExam();window.scrollTo(0,0)}
+function jump(k){X.i=k;renderExam();window.scrollTo(0,0)}
+function confirmSubmit(){
+  const left=X.qs.filter(q=>q.pick===null).length+(X.essayText.trim()?0:1);
+  ask(left?`Còn ${left} câu chưa làm. Vẫn nộp bài?`:"Nộp bài?",()=>submitExam(false));
+}
+function submitExam(timeout,reason){
+  if(!X||X.done)return;X.done=true;stopTimer();
+  let c=0;X.qs.forEach(q=>{if(q.pick===q.ans){c++;markRight(q.id)}else markWrong(q.id)});
+  X.correct=c;X.keysOk=X.essay.keys.map(()=>false);X.reason=timeout?"Hết giờ – bài đã tự nộp.":(reason||"");
+  X.used=Math.min(EXAM_MIN*60000,EXAM_MIN*60000-(X.end-Date.now()));
+  const d=new Date();X.stamp=d.toLocaleDateString("vi-VN")+" "+d.toLocaleTimeString("vi-VN",{hour:"2-digit",minute:"2-digit"});
+  HIST.push({t:X.stamp,c,s:c*MCQ_PT});HIST=HIST.slice(-30);store.set("hist",HIST);
+  renderResult();
+}
+function essayScore(){const k=X.keysOk.filter(Boolean).length;return Math.round(ESSAY_PT*k/X.essay.keys.length*10)/10}
+function totalScore(){return Math.round((X.correct*MCQ_PT+essayScore())*10)/10}
+function renderResult(){
+  setTitle("Kết quả thi thử");
+  const tot=totalScore(),pass=tot>=PASS;
+  const mm=Math.floor(X.used/60000),ss=Math.floor(X.used%60000/1000);
+  app.innerHTML=`
+  ${X.reason?`<div class="warn">${esc(X.reason)}</div>`:""}
+  <div class="card"><div class="kpi">
+   <div><small>Tổng điểm</small><span class="score ${pass?"pass":"fail"}" id="tot">${tot}</span><span class="muted">/100</span></div>
+   <div><small>Kết quả</small><b class="${pass?"pass":"fail"}" id="verdict">${pass?"ĐẠT (≥ 85)":"CHƯA ĐẠT (< 85)"}</b></div>
+   <div><small>Trắc nghiệm</small><b>${X.correct}/18 · ${X.correct*MCQ_PT}đ</b></div>
+   <div><small>Tự luận (tự chấm)</small><b id="es">${essayScore()}/${ESSAY_PT}</b></div>
+   <div><small>Thời gian làm</small><b>${mm}:${String(ss).padStart(2,"0")}</b></div>
+   <div><small>Rời màn hình</small><b class="${X.leave?"fail":""}">${X.leave} lần</b></div></div>
+   <div class="prog"><i style="width:${tot}%"></i></div>
+   <div class="small muted">Để đạt cần sai tối đa ${Math.floor((100-PASS)/MCQ_PT)} câu trắc nghiệm nếu tự luận đạt trọn ${ESSAY_PT} điểm.</div>
+   <div style="margin-top:12px;display:flex;gap:8px;flex-wrap:wrap"><button class="btn" onclick="startExam()">Thi đề mới</button><button class="btn sec" onclick="retryWrongExam()">Làm lại các câu sai</button><button class="btn sec" onclick="home()">Trang chủ</button></div></div>
+  <div class="card"><b>Câu tự luận – tự chấm</b><div class="q" style="font-size:16px">${esc(X.essay.q)}</div>
+   <details ${X.essayText.trim()?"open":""}><summary>Bài làm của bạn</summary><div style="white-space:pre-wrap;background:#f7f8fb;border-radius:8px;padding:10px;margin-top:6px">${esc(X.essayText||"(bỏ trống)")}</div></details>
+   <p class="small muted">Tích vào các ý chính bạn đã viết đúng (mỗi ý ${Math.round(ESSAY_PT/X.essay.keys.length*100)/100} điểm):</p>
+   ${X.essay.keys.map((k,j)=>`<label class="check"><input type="checkbox" onchange="X.keysOk[${j}]=this.checked;updScore()"><span>${esc(k)}</span></label>`).join("")}
+   <details style="margin-top:10px"><summary>Đáp án mẫu</summary><div class="exp">${esc(X.essay.model)}</div></details>
+   <div class="small muted" style="margin-top:6px">Nguồn: ${esc(secLabel(X.essay.sec))}</div></div>
+  <div class="card"><b>Chi tiết 18 câu trắc nghiệm</b>
+   <div class="chips"><span class="chip on" id="fAll" onclick="filt(0)">Tất cả</span><span class="chip" id="fBad" onclick="filt(1)">Chỉ câu sai (${18-X.correct})</span></div>
+   <div id="rev"></div></div>`;
+  filt(0);
+}
+function updScore(){const t=totalScore(),p=t>=PASS;$("#tot").textContent=t;$("#tot").className="score "+(p?"pass":"fail");$("#es").textContent=essayScore()+"/"+ESSAY_PT;const v=$("#verdict");v.textContent=p?"ĐẠT (≥ 85)":"CHƯA ĐẠT (< 85)";v.className=p?"pass":"fail";const h=HIST[HIST.length-1];if(h&&h.t===X.stamp){h.s=t;store.set("hist",HIST)}}
+function filt(b){
+  $("#fAll").classList.toggle("on",!b);$("#fBad").classList.toggle("on",!!b);
+  $("#rev").innerHTML=X.qs.map((q,i)=>{const ok=q.pick===q.ans;if(b&&ok)return"";
+   return `<div style="padding:12px 0;border-bottom:1px solid var(--line)"><div><span class="tag">${i+1}</span><span class="tag">${esc(q.sec==="TB58"?"TB 58":q.sec)}</span><b class="${ok?"pass":"fail"}">${ok?"✓ Đúng":(q.pick===null?"✗ Bỏ trống":"✗ Sai")}</b></div>
+   <div class="q" style="font-size:16px">${esc(q.q)}</div>
+   ${q.order.map((oi,k)=>`<div class="opt lock ${k===q.ans?"ok":(k===q.pick?"bad":"")}"><span class="k">${"ABCD"[k]}</span><span>${esc(q.opts[oi])}</span></div>`).join("")}
+   <div class="exp ${ok?"":"bad"}"><b>Giải thích:</b> ${esc(q.e)}<div class="small muted">Nguồn: ${esc(secLabel(q.sec))}</div></div></div>`}).join("")||`<p class="pass"><b>Không có câu sai. Xuất sắc!</b></p>`;
+}
+function retryWrongExam(){const ids=X.qs.filter(q=>q.pick!==q.ans).map(q=>q.id);if(!ids.length){note("Không có câu sai.");return}startPractice("ids",ids)}
+
+// ================= PRACTICE =================
+let P=null;let selG=["A","B","C","D"];
+function practiceSetup(){
+  stopTimer();setTitle("Luyện tập theo chủ đề");
+  const secs=[...new Set(Q.map(q=>q.sec==="TB58"?"TB":q.sec.slice(0,2)))];
+  app.innerHTML=`<div class="card"><b>Chọn khối</b><div class="chips" id="gch">${Object.keys(GROUPS).map(g=>`<span class="chip ${selG.includes(g)?"on":""}" onclick="togG('${g}')">${GROUPS[g]} (${Q.filter(q=>q.g===g).length})</span>`).join("")}</div>
+  <b>Hoặc chọn một nhóm cụ thể</b><div class="chips">${secs.map(s=>`<span class="chip" onclick="startPractice('sec','${s}')">${s==="TB"?"TB 58":s} · ${SECNAME[s]} (${Q.filter(q=>(q.sec==="TB58"?"TB":q.sec.slice(0,2))===s).length})</span>`).join("")}</div>
+  <div style="margin-top:12px"><button class="btn" onclick="startPractice('groups')">Bắt đầu luyện (${Q.filter(q=>selG.includes(q.g)).length} câu)</button> <button class="btn sec" onclick="home()">Trang chủ</button></div></div>`;
+}
+function togG(g){selG=selG.includes(g)?selG.filter(x=>x!==g):selG.concat(g);if(!selG.length)selG=[g];practiceSetup()}
+function startPractice(mode,arg){
+  stopTimer();let list;
+  if(mode==="wrong")list=Q.filter(q=>WRONG[q.id]);
+  else if(mode==="ids")list=Q.filter(q=>arg.includes(q.id));
+  else if(mode==="sec")list=Q.filter(q=>(q.sec==="TB58"?"TB":q.sec.slice(0,2))===arg);
+  else list=Q.filter(q=>selG.includes(q.g));
+  if(!list.length){note("Không có câu nào.",home);return}
+  P={mode,qs:shuffle(list).map(prep),i:0,ok:0,bad:0};
+  setTitle(mode==="wrong"?"Ôn câu đã sai":"Luyện tập");renderP();
+}
+function renderP(){
+  const q=P.qs[P.i],n=P.qs.length,ans=q.pick!==null;
+  app.innerHTML=`<div class="card"><div class="bar"><span class="muted small">Câu ${P.i+1}/${n} · <span class="tag">${esc(q.sec==="TB58"?"TB 58":q.sec)}</span></span><span class="small"><b class="pass">✓ ${P.ok}</b> · <b class="fail">✗ ${P.bad}</b></span></div>
+  <div class="prog"><i style="width:${(P.i)/n*100}%"></i></div>
+  <div class="q">${esc(q.q)}</div>
+  ${q.order.map((oi,k)=>{let c="";if(ans){c="lock "+(k===q.ans?"ok":(k===q.pick?"bad":""))}return `<div class="opt ${c}" onclick="${ans?"":`pickP(${k})`}"><span class="k">${"ABCD"[k]}</span><span>${esc(q.opts[oi])}</span></div>`}).join("")}
+  ${ans?`<div class="exp ${q.pick===q.ans?"":"bad"}"><b>${q.pick===q.ans?"Chính xác!":"Chưa đúng."}</b> ${esc(q.e)}<div class="small muted">Nguồn: ${esc(secLabel(q.sec))}</div></div>`:""}
+  <div class="bar" style="margin-top:14px"><button class="btn sec" onclick="home()">Thoát</button>
+  ${ans?(P.i<n-1?`<button class="btn" onclick="P.i++;renderP();window.scrollTo(0,0)">Câu tiếp →</button>`:`<button class="btn dark" onclick="endP()">Xem kết quả</button>`):`<span class="muted small">Chọn một đáp án</span>`}</div></div>`;
+}
+function pickP(k){const q=P.qs[P.i];q.pick=k;if(k===q.ans){P.ok++;markRight(q.id)}else{P.bad++;markWrong(q.id)}renderP()}
+function endP(){const n=P.qs.length,pct=Math.round(P.ok/n*100);
+  app.innerHTML=`<div class="card"><div class="kpi"><div><small>Tỷ lệ đúng</small><span class="score ${pct>=PASS?"pass":"fail"}">${pct}%</span></div><div><small>Đúng</small><b class="pass">${P.ok}</b></div><div><small>Sai</small><b class="fail">${P.bad}</b></div></div>
+  <div style="margin-top:12px;display:flex;gap:8px;flex-wrap:wrap">${P.bad?`<button class="btn" onclick="startPractice('ids',${JSON.stringify(P.qs.filter(q=>q.pick!==q.ans).map(q=>q.id)).replace(/"/g,"&quot;")})">Làm lại ${P.bad} câu sai</button>`:""}<button class="btn sec" onclick="practiceSetup()">Chọn chủ đề khác</button><button class="btn sec" onclick="home()">Trang chủ</button></div></div>`;}
+
+// ================= ESSAY BANK & BOOK =================
+function essayBank(){
+  stopTimer();setTitle("Ôn tự luận");
+  app.innerHTML=`<div class="card"><button class="btn sec" onclick="home()">← Trang chủ</button></div>`+E.map((e,i)=>`<div class="card"><span class="tag">Đề ${i+1}</span><span class="tag">${esc(e.sec)}</span><div class="q" style="font-size:16px">${esc(e.q)}</div>
+  <details><summary>Các ý chính cần có (${e.keys.length} ý)</summary><ol>${e.keys.map(k=>`<li>${esc(k)}</li>`).join("")}</ol></details>
+  <details style="margin-top:6px"><summary>Đáp án mẫu</summary><div class="exp">${esc(e.model)}</div></details></div>`).join("");
+}
+function book(){
+  stopTimer();setTitle("Sổ tay đáp án");
+  const by={};Q.forEach(q=>{const k=q.sec==="TB58"?"TB":q.sec.slice(0,2);(by[k]=by[k]||[]).push(q)});
+  app.innerHTML=`<div class="card"><button class="btn sec" onclick="home()">← Trang chủ</button> <span class="muted small">Đáp án đúng tô xanh. Dùng để đọc lướt trước khi thi.</span></div>`+
+  Object.keys(by).map(k=>`<div class="card book"><b>${k==="TB"?"TB 58":k} · ${SECNAME[k]}</b>${by[k].map(q=>`<div class="item"><span class="tag">${esc(q.sec==="TB58"?"TB 58":q.sec)}</span>${esc(q.q)}<div class="ans">→ ${esc(q.opts[0])}</div><div class="small muted">${esc(q.e)}</div></div>`).join("")}</div>`).join("");
+}
+home();
+</script>
+</body>
+</html>
